@@ -8,7 +8,7 @@ Showcase your projects, skills, experience, achievements, and certifications wit
 ## 🌐 Connect & Live Demo  
 
 [**View Deployed App**](https://saurav-portfolio-dun.vercel.app/) ✅ *(Live Now)*  
-[**Linkedin Profile**](https://www.linkedin.com/in/sauravkumarsah-dev/) ✅ *(Live Now)*  
+[**Linkedin Profile**](https://www.linkedin.com/in/sauravkumarsah-dev/) ✅ *(View My linkedin Profile)*  
 
 ---
 
