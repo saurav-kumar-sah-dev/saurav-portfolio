@@ -1,84 +1,259 @@
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaHeart, FaCode, FaRocket } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
+  const socialLinks = [
+    {
+      href: "https://github.com/saurav-kumar-sah-dev",
+      icon: FaGithub,
+      label: "GitHub",
+      color: "text-gray-700 dark:text-gray-300",
+      hoverColor: "group-hover:text-black dark:group-hover:text-white",
+      gradient: "from-gray-400 via-gray-500 to-gray-400 dark:from-gray-500 dark:via-gray-400 dark:to-gray-500",
+      ring: "focus:ring-gray-400 dark:focus:ring-gray-500"
+    },
+    {
+      href: "https://www.linkedin.com/in/sauravkumarsah-dev/",
+      icon: FaLinkedin,
+      label: "LinkedIn",
+      color: "text-blue-500 dark:text-blue-400",
+      hoverColor: "group-hover:text-blue-700 dark:group-hover:text-blue-300",
+      gradient: "from-blue-400 via-blue-500 to-blue-400",
+      ring: "focus:ring-blue-400"
+    },
+    {
+      href: "mailto:sauravshubham903@gmail.com",
+      icon: FaEnvelope,
+      label: "Email",
+      color: "text-red-500 dark:text-red-400",
+      hoverColor: "group-hover:text-red-700 dark:group-hover:text-red-300",
+      gradient: "from-red-400 via-red-500 to-red-400",
+      ring: "focus:ring-red-400"
+    }
+  ];
+
+  const quickLinks = [
+    { to: "/", label: "Home" },
+    { to: "/projects", label: "Projects" },
+    { to: "/resume", label: "Resume" },
+    { to: "/contact", label: "Contact" }
+  ];
+
   return (
     <motion.footer
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="
-        relative
-        bg-white/90 dark:bg-gray-900/90
-        text-gray-800 dark:text-gray-100
-        backdrop-blur-md
-        py-8 mt-16
-        border-t border-gray-200 dark:border-gray-700
-      "
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        {/* Left section */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-sm text-gray-600 dark:text-gray-400 text-center md:text-left"
-        >
-          © {year}{" "}
-          <span className="font-semibold text-gray-900 dark:text-gray-200">
-            Saurav Kumar Sah
-          </span>{" "}
-          — All rights reserved.
-        </motion.p>
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 dark:from-gray-950 dark:via-blue-950/20 dark:to-purple-950/20">
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px]" />
+        
+        {/* Gradient orbs */}
+        <motion.div
+          className="absolute -top-20 -left-20 w-60 h-60 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute -bottom-20 -right-20 w-60 h-60 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.5, 0.3, 0.5]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 4
+          }}
+        />
+      </div>
 
-        {/* Right section */}
-        <div className="flex gap-6 text-2xl flex-wrap justify-center md:justify-end">
-          {/* GitHub */}
-          <motion.a
-            href="https://github.com/saurav-kumar-sah-dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            whileHover={{ scale: 1.15, rotate: 3 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 dark:focus:ring-gray-500 rounded-full"
-          >
-            <span className="absolute -inset-3 rounded-full bg-gradient-to-r from-gray-400 via-gray-500 to-gray-400 dark:from-gray-500 dark:via-gray-400 dark:to-gray-500 opacity-10 blur-xl group-hover:opacity-20 transition"></span>
-            <FaGithub className="relative text-gray-700 dark:text-gray-300 group-hover:text-black dark:group-hover:text-white transition-colors duration-300" />
-          </motion.a>
+      {/* Top Border Line */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
 
-          {/* LinkedIn */}
-          <motion.a
-            href="https://www.linkedin.com/in/sauravkumarsah-dev/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            whileHover={{ scale: 1.15, rotate: 3 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 rounded-full"
-          >
-            <span className="absolute -inset-3 rounded-full bg-gradient-to-r from-blue-400 via-blue-500 to-blue-400 opacity-10 blur-xl group-hover:opacity-20 transition"></span>
-            <FaLinkedin className="relative text-blue-500 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-300" />
-          </motion.a>
+      {/* Main Footer Content */}
+      <div className="relative">
+        {/* Top Section */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {/* Brand Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-center md:text-left"
+            >
+              <h3 className="text-2xl sm:text-3xl font-black mb-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 text-transparent bg-clip-text">
+                Saurav Kumar Sah
+              </h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                Full Stack Developer crafting beautiful & functional web experiences with the MERN stack.
+              </p>
+              <div className="flex items-center justify-center md:justify-start gap-2 text-sm text-gray-500 dark:text-gray-500">
+                <span>Made with</span>
+                <FaHeart className="text-red-500 animate-pulse" />
+                <span>using</span>
+                <FaCode className="text-blue-500" />
+                <span>&</span>
+                <FaRocket className="text-purple-500" />
+              </div>
+            </motion.div>
 
-          {/* Email */}
-          <motion.a
-            href="mailto:sauravshubham903@gmail.com"
-            aria-label="Email"
-            whileHover={{ scale: 1.15, rotate: 3 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 rounded-full"
-          >
-            <span className="absolute -inset-3 rounded-full bg-gradient-to-r from-red-400 via-red-500 to-red-400 opacity-10 blur-xl group-hover:opacity-20 transition"></span>
-            <FaEnvelope className="relative text-red-500 dark:text-red-400 group-hover:text-red-700 dark:group-hover:text-red-300 transition-colors duration-300" />
-          </motion.a>
+            {/* Quick Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-center"
+            >
+              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                Quick Links
+              </h4>
+              <ul className="space-y-2">
+                {quickLinks.map((link, index) => (
+                  <motion.li
+                    key={link.to}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 + index * 0.1 }}
+                  >
+                    <Link
+                      to={link.to}
+                      className="inline-block text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 relative group"
+                    >
+                      <span className="relative">
+                        {link.label}
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300" />
+                      </span>
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="text-center md:text-right"
+            >
+              <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                Connect With Me
+              </h4>
+              <div className="flex gap-4 justify-center md:justify-end flex-wrap">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ 
+                      delay: 0.5 + index * 0.1,
+                      type: "spring",
+                      stiffness: 500
+                    }}
+                    whileHover={{ scale: 1.2, y: -5 }}
+                    whileTap={{ scale: 0.9 }}
+                    className={`relative group focus:outline-none focus:ring-2 focus:ring-offset-2 ${social.ring} rounded-full p-3 sm:p-4 bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 dark:border-gray-700/20`}
+                  >
+                    {/* Glow effect */}
+                    <span className={`absolute -inset-1 rounded-full bg-gradient-to-r ${social.gradient} opacity-0 blur-lg group-hover:opacity-30 transition-opacity duration-300`} />
+                    
+                    {/* Icon */}
+                    <social.icon className={`relative text-xl sm:text-2xl ${social.color} ${social.hoverColor} transition-colors duration-300`} />
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* Additional Info */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="mt-6 space-y-2"
+              >
+                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500">
+                  Open for opportunities
+                </p>
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-xs font-medium">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                  </span>
+                  Available for work
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent"
+          />
+        </div>
+
+        {/* Bottom Section */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            {/* Copyright */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center sm:text-left"
+            >
+              © {year}{" "}
+              <span className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 text-transparent bg-clip-text">
+                Saurav Kumar Sah
+              </span>
+              {" "}• All rights reserved.
+            </motion.p>
+
+            {/* Tech Stack Badge */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-500"
+            >
+              <span>Built with</span>
+              <div className="flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-md font-medium">
+                <span>React</span>
+              </div>
+              <span>&</span>
+              <div className="flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-md font-medium">
+                <span>Node.js</span>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* subtle bottom line */}
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent dark:via-gray-700"></div>
+      {/* Bottom gradient line */}
+      <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-50" />
     </motion.footer>
   );
 }
