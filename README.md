@@ -54,4 +54,4 @@ Showcase your projects, skills, experience, achievements, and certifications wit
 - Contact form integrated with **Nodemailer + MongoDB**  
 - Admin-ready: add/edit/delete projects via MongoDB or API  
 - Smooth **Framer Motion** animations  
-- Cloud deployment ready (**Vercel frontend**, **Render/Heroku backend**)
+- Cloud deployment ready (**Vercel frontend**,  **Render/Heroku backend**)
