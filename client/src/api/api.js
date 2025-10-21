@@ -19,7 +19,7 @@ const getBaseURL = () => {
 
 const API = axios.create({
   baseURL: getBaseURL(),
-  timeout: 15000, // 15 second timeout for deployment
+  timeout: 10000, // 10 second timeout for deployment
 });
 
 // Add request interceptor for debugging

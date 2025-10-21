@@ -15,15 +15,28 @@ try {
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
-      }
+      },
+      // Add timeout and connection settings
+      connectionTimeout: 10000, // 10 seconds
+      greetingTimeout: 10000,   // 10 seconds
+      socketTimeout: 10000,     // 10 seconds
     });
     
-    await transporter.sendMail({
+    // Set a timeout for the email sending
+    const emailPromise = transporter.sendMail({
       from: email,
       to: process.env.EMAIL_USER,
       subject: `Portfolio Contact from ${name}`,
       text: message
     });
+    
+    // Race between email sending and timeout
+    await Promise.race([
+      emailPromise,
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Email timeout')), 8000)
+      )
+    ]);
     
     console.log('Email sent successfully!');
   } else {
