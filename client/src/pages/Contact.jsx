@@ -33,7 +33,7 @@ export default function Contact() {
   const socialLinks = [
     { icon: FaGithub, label: "GitHub", href: "https://github.com/saurav-kumar-sah-dev", color: "hover:text-gray-900 dark:hover:text-white", bgColor: "from-gray-600 to-gray-800" },
     { icon: FaLinkedin, label: "LinkedIn", href: "https://linkedin.com/in/sauravkumarsah-dev", color: "hover:text-blue-600", bgColor: "from-blue-600 to-blue-800" },
-    { icon: FaTwitter, label: "Twitter", href: "https://twitter.com/yourusername", color: "hover:text-blue-400", bgColor: "from-blue-400 to-cyan-500" },
+    { icon: FaTwitter, label: "Twitter", href: "https://x.com/SauravK71046704", color: "hover:text-blue-400", bgColor: "from-blue-400 to-cyan-500" },
   ];
 
   return (

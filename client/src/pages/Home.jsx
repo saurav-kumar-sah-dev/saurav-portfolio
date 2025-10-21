@@ -17,7 +17,7 @@ const techStack = [
 const socialLinks = [
   { icon: FaGithub, href: "https://github.com/saurav-kumar-sah-dev", label: "GitHub", color: "hover:text-gray-900 dark:hover:text-white" },
   { icon: FaLinkedin, href: "https://linkedin.com/in/sauravkumarsah-dev", label: "LinkedIn", color: "hover:text-blue-600" },
-  { icon: FaTwitter, href: "https://twitter.com/yourusername", label: "Twitter", color: "hover:text-blue-400" },
+  { icon: FaTwitter, href: "https://x.com/SauravK71046704", label: "Twitter", color: "hover:text-blue-400" },
 ];
 
 export default function Home() {
