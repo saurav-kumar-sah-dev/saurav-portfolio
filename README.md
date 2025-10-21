@@ -9,7 +9,6 @@ Showcase your projects, skills, experience, achievements, and certifications wit
 
 [**View Deployed App**](https://saurav-portfolio-dun.vercel.app/) ✅ *(Live Now)*  
 [**Linkedin Profile**](https://www.linkedin.com/in/sauravkumarsah-dev/) ✅ *(View My linkedin Profile)*  
-[**X (Twitter) Profile**](https://x.com/SauravK71046704) ✅ *(Follow me on X)*  
 
 **Backend API**: https://saurav-portfolio-vx82.onrender.com/api
 
@@ -44,7 +43,7 @@ Showcase your projects, skills, experience, achievements, and certifications wit
 | **MongoDB Atlas**  | Cloud database for projects & messages   |
 | **SendGrid**       | Reliable email delivery service          |
 | **Framer Motion**  | Smooth animations & transitions          |
-| **JWT Auth** *(optional)* | Secure admin routes if implemented |
+| **JWT Auth**       | Secure admin routes if implemented |
 
 ---
 
@@ -73,9 +72,11 @@ Showcase your projects, skills, experience, achievements, and certifications wit
 
 ### ✅ **Backend (Render)**
 - **URL**: https://saurav-portfolio-vx82.onrender.com/api
+- **Welcome Page**: https://saurav-portfolio-vx82.onrender.com/ (Professional API documentation)
 - **Status**: Live and working
 - **Database**: MongoDB Atlas connected
 - **Email**: SendGrid integration active
+- **Design**: Clean, consistent styling with clear endpoint documentation
 
 ### ✅ **Contact Form**
 - **Status**: Fully functional
@@ -122,3 +123,5 @@ PORT=5000
 - ✅ **Console Cleanup**: Removed debug logs for production-ready code
 - ✅ **Error Handling**: Enhanced user experience with graceful fallbacks
 - ✅ **Loading States**: Improved loading experience with progressive messages
+- ✅ **Backend Welcome Page**: Professional, clean design with consistent styling
+- ✅ **API Documentation**: Clear endpoint display with method badges and descriptions

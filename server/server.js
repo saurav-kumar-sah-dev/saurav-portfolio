@@ -53,44 +53,15 @@ app.get('/', (req, res) => {
             
             body { 
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-                background-size: 400% 400%;
-                animation: gradientShift 8s ease infinite;
+                background: #f8fafc;
                 min-height: 100vh;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                color: white;
+                color: #1e293b;
                 padding: 1rem;
                 position: relative;
                 overflow-x: hidden;
-            }
-            
-            @keyframes gradientShift {
-                0% { background-position: 0% 50%; }
-                50% { background-position: 100% 50%; }
-                100% { background-position: 0% 50%; }
-            }
-            
-            /* Floating particles background */
-            body::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-image: 
-                    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
-                animation: float 6s ease-in-out infinite;
-                pointer-events: none;
-            }
-            
-            @keyframes float {
-                0%, 100% { transform: translateY(0px) rotate(0deg); }
-                50% { transform: translateY(-20px) rotate(180deg); }
             }
             
             .container {
@@ -98,38 +69,21 @@ app.get('/', (req, res) => {
                 max-width: 800px;
                 width: 100%;
                 padding: 2.5rem;
-                background: rgba(255, 255, 255, 0.15);
-                border-radius: 30px;
-                backdrop-filter: blur(20px);
-                border: 2px solid rgba(255, 255, 255, 0.3);
+                background: #f8fafc;
+                border-radius: 20px;
+                border: 1px solid #e2e8f0;
                 box-shadow: 
-                    0 25px 50px rgba(0, 0, 0, 0.2),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+                    0 10px 25px rgba(0, 0, 0, 0.1),
+                    0 4px 6px rgba(0, 0, 0, 0.05);
                 position: relative;
                 z-index: 1;
-                animation: slideUp 0.8s ease-out;
-            }
-            
-            @keyframes slideUp {
-                from { opacity: 0; transform: translateY(30px); }
-                to { opacity: 1; transform: translateY(0); }
             }
             
             h1 { 
                 font-size: 3rem; 
                 margin-bottom: 1rem;
-                background: linear-gradient(45deg, #fff, #e0e7ff, #c7d2fe);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
+                color: #1e293b;
                 font-weight: 800;
-                text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-                animation: glow 2s ease-in-out infinite alternate;
-            }
-            
-            @keyframes glow {
-                from { filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3)); }
-                to { filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.6)); }
             }
             
             .status { 
@@ -142,21 +96,15 @@ app.get('/', (req, res) => {
                 margin: 1.5rem 0;
                 font-size: 1rem;
                 box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
-                animation: pulse 2s infinite;
                 border: 2px solid rgba(255, 255, 255, 0.2);
-            }
-            
-            @keyframes pulse {
-                0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.05); }
             }
             
             .welcome-text {
                 font-size: 1.2rem;
                 margin: 1.5rem 0;
-                opacity: 0.9;
+                color: #64748b;
                 line-height: 1.6;
-                font-weight: 300;
+                font-weight: 400;
             }
             
             .links { 
@@ -170,40 +118,23 @@ app.get('/', (req, res) => {
             }
             
             .links a {
-                color: white;
+                color: #1e293b;
                 text-decoration: none;
                 padding: 1rem 1.5rem;
-                background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-                border-radius: 20px;
+                background: #ffffff;
+                border-radius: 12px;
                 font-weight: 600;
                 font-size: 1rem;
-                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                border: 2px solid rgba(255, 255, 255, 0.3);
-                backdrop-filter: blur(10px);
-                position: relative;
-                overflow: hidden;
+                transition: all 0.3s ease;
+                border: 1px solid #e2e8f0;
             }
             
-            .links a::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-                transition: left 0.5s;
-            }
-            
-            .links a:hover::before {
-                left: 100%;
-            }
             
             .links a:hover { 
-                background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
-                transform: translateY(-5px) scale(1.05);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-                border-color: rgba(255, 255, 255, 0.5);
+                background: #e2e8f0;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+                border-color: #cbd5e1;
             }
             
             .endpoints-section {
@@ -214,44 +145,31 @@ app.get('/', (req, res) => {
                 font-size: 1.5rem;
                 margin-bottom: 1.5rem;
                 font-weight: 700;
-                background: linear-gradient(45deg, #fff, #e0e7ff);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
+                color: #1e293b;
             }
             
             .endpoints-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
                 margin-top: 1.5rem;
             }
             
             .endpoint-card {
-                background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-                border-radius: 20px;
+                background: #ffffff;
+                border-radius: 12px;
                 padding: 1.5rem;
-                border: 2px solid rgba(255, 255, 255, 0.3);
-                backdrop-filter: blur(15px);
-                transition: all 0.4s ease;
+                border: 1px solid #e2e8f0;
+                transition: all 0.3s ease;
                 position: relative;
                 overflow: hidden;
             }
             
-            .endpoint-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 3px;
-                background: linear-gradient(90deg, #10b981, #34d399, #6ee7b7);
-            }
             
             .endpoint-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-                border-color: rgba(255, 255, 255, 0.5);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+                border-color: #cbd5e1;
             }
             
             .endpoint-method {
@@ -279,19 +197,19 @@ app.get('/', (req, res) => {
                 font-size: 1rem;
                 font-weight: 600;
                 margin-bottom: 0.5rem;
-                color: #e0e7ff;
+                color: #1e293b;
             }
             
             .endpoint-description {
                 font-size: 0.9rem;
-                opacity: 0.8;
+                color: #64748b;
                 line-height: 1.4;
             }
             
             .footer-text {
                 margin-top: 2.5rem;
                 font-size: 1rem;
-                opacity: 0.7;
+                color: #64748b;
                 font-weight: 300;
             }
             
@@ -373,7 +291,6 @@ app.get('/', (req, res) => {
             <div class="links">
                 <a href="https://saurav-portfolio-dun.vercel.app" target="_blank">🌐 View Portfolio</a>
                 <a href="https://github.com/saurav-kumar-sah-dev" target="_blank">💻 GitHub</a>
-                <a href="https://linkedin.com/in/sauravkumarsah-dev" target="_blank">💼 LinkedIn</a>
             </div>
             
             <div class="endpoints-section">
