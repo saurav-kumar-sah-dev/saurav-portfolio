@@ -9,6 +9,7 @@ Showcase your projects, skills, experience, achievements, and certifications wit
 
 [**View Deployed App**](https://saurav-portfolio-dun.vercel.app/) ✅ *(Live Now)*  
 [**Linkedin Profile**](https://www.linkedin.com/in/sauravkumarsah-dev/) ✅ *(View My linkedin Profile)*  
+[**X (Twitter) Profile**](https://x.com/SauravK71046704) ✅ *(Follow me on X)*  
 
 **Backend API**: https://saurav-portfolio-vx82.onrender.com/api
 
@@ -50,13 +51,16 @@ Showcase your projects, skills, experience, achievements, and certifications wit
 ## ⚡ Key Features  
 
 - ✅ **Fully Responsive** design for all screen sizes  
-- ✅ **Dark/Light mode** toggle  
+- ✅ **Dark/Light mode** toggle with localStorage persistence  
 - ✅ **Dynamic Projects** grid with clickable detail pages  
 - ✅ **Skills, Experience, Achievements & Certifications** sections  
 - ✅ **Working Contact Form** with SendGrid email delivery  
 - ✅ **Database Integration** - messages saved to MongoDB  
 - ✅ **Smooth Animations** with Framer Motion  
+- ✅ **Progressive Loading** with skeleton screens and fallbacks  
+- ✅ **Error Handling** - graceful fallbacks throughout  
 - ✅ **Production Ready** - deployed on Vercel + Render  
+- ✅ **Clean Code** - optimized for performance and maintainability  
 
 ---
 
@@ -108,3 +112,13 @@ EMAIL_PASS=your-app-password
 SENDGRID_API_KEY=SG.your-sendgrid-api-key
 PORT=5000
 ```
+
+---
+
+## 🎯 Recent Updates
+
+- ✅ **Social Links Updated**: X (Twitter) profile links now point to actual profile
+- ✅ **Footer Alignment Fixed**: "Connect With Me" section centered on all devices  
+- ✅ **Console Cleanup**: Removed debug logs for production-ready code
+- ✅ **Error Handling**: Enhanced user experience with graceful fallbacks
+- ✅ **Loading States**: Improved loading experience with progressive messages
