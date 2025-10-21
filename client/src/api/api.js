@@ -13,7 +13,7 @@ const getBaseURL = () => {
     return 'http://localhost:5000/api';
   }
   
-  // Production fallback
+  // Production fallback - always use the deployed backend
   return 'https://saurav-portfolio-vx82.onrender.com/api';
 };
 
@@ -25,11 +25,13 @@ const API = axios.create({
 // Add request interceptor for debugging
 API.interceptors.request.use(
   (config) => {
-    console.log('API Request:', config.baseURL + config.url);
+    console.log('🚀 API Request:', config.baseURL + config.url);
+    console.log('🌍 Environment:', import.meta.env.MODE);
+    console.log('🔗 Backend URL:', getBaseURL());
     return config;
   },
   (error) => {
-    console.error('API Request Error:', error);
+    console.error('❌ API Request Error:', error);
     return Promise.reject(error);
   }
 );
@@ -37,11 +39,22 @@ API.interceptors.request.use(
 // Add response interceptor for better error handling
 API.interceptors.response.use(
   (response) => {
-    console.log('API Response:', response.status, response.config.url);
+    console.log('✅ API Response:', response.status, response.config.url);
     return response;
   },
   (error) => {
-    console.error('API Response Error:', error.response?.status, error.config?.url, error.message);
+    console.error('❌ API Response Error:', {
+      status: error.response?.status,
+      url: error.config?.url,
+      message: error.message,
+      fullError: error
+    });
+    
+    // Provide more helpful error messages
+    if (error.code === 'NETWORK_ERROR' || !error.response) {
+      console.error('🌐 Network Error - Check if backend is running and accessible');
+    }
+    
     return Promise.reject(error);
   }
 );

@@ -23,8 +23,22 @@ export default function ContactForm() {
         setStatus({ loading: false, success: null, error: null });
       }, 5000);
     } catch (err) {
-      console.error(err);
-      setStatus({ loading: false, success: null, error: 'Failed to send message. Try again later.' });
+      console.error('Contact form error:', err);
+      
+      // Provide more specific error messages
+      let errorMessage = 'Failed to send message. Try again later.';
+      
+      if (err.response?.status === 404) {
+        errorMessage = 'Backend service not found. Please try again later.';
+      } else if (err.response?.status >= 500) {
+        errorMessage = 'Server error. Please try again later.';
+      } else if (err.code === 'NETWORK_ERROR' || !err.response) {
+        errorMessage = 'Network error. Please check your connection and try again.';
+      } else if (err.response?.status === 400) {
+        errorMessage = 'Invalid form data. Please check your inputs.';
+      }
+      
+      setStatus({ loading: false, success: null, error: errorMessage });
       
       // Auto-hide error message after 5 seconds
       setTimeout(() => {
