@@ -9,6 +9,11 @@ await newMsg.save();
 
 // Try to send email (optional - don't fail if email fails)
 try {
+  console.log('Email config check:', {
+    hasSendGrid: !!process.env.SENDGRID_API_KEY,
+    hasGmail: !!(process.env.EMAIL_USER && process.env.EMAIL_PASS)
+  });
+  
   if (process.env.SENDGRID_API_KEY) {
     // Use SendGrid for reliable email delivery in production
     const sgMail = require('@sendgrid/mail');
