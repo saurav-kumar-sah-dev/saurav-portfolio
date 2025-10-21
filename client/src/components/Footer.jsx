@@ -123,12 +123,12 @@ export default function Footer() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-center md:text-right"
+              className="text-center"
             >
               <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                 Connect With Me
               </h4>
-              <div className="flex gap-4 justify-center md:justify-end flex-wrap">
+              <div className="flex gap-4 justify-center flex-wrap">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={social.label}
