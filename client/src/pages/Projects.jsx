@@ -85,7 +85,12 @@ export default function Projects() {
       })
       .catch(err => {
         console.error('Error fetching projects:', err);
-        setApiError(err.message || 'Failed to fetch projects');
+        const errorMessage = err.response?.status === 404 
+          ? 'Backend server not found. Please check if the server is deployed.'
+          : err.code === 'ECONNREFUSED'
+          ? 'Cannot connect to backend server. Please check your deployment.'
+          : err.message || 'Failed to fetch projects';
+        setApiError(errorMessage);
         setLoadingMessage("Having trouble loading projects. Please try refreshing the page.");
         // Set sample projects for demo purposes if API fails
         setProjects([

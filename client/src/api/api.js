@@ -5,8 +5,8 @@ import axios from 'axios';
 const API = axios.create({
   baseURL:
     import.meta.env.VITE_BACKEND_URL ||
-    'http://localhost:5000/api', // fallback for local dev
-  timeout: 10000, // 10 second timeout
+    (import.meta.env.DEV ? 'http://localhost:5000/api' : 'https://your-backend-url.railway.app/api'),
+  timeout: 15000, // 15 second timeout for deployment
 });
 
 // ✅ Projects
