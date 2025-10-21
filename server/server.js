@@ -58,17 +58,22 @@ app.get('/', (req, res) => {
                 align-items: center;
                 justify-content: center;
                 color: white;
+                padding: 1rem;
             }
             .container {
                 text-align: center;
                 max-width: 600px;
-                padding: 2rem;
+                width: 100%;
+                padding: 1.5rem;
                 background: rgba(255, 255, 255, 0.1);
                 border-radius: 20px;
                 backdrop-filter: blur(10px);
                 border: 1px solid rgba(255, 255, 255, 0.2);
             }
-            h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+            h1 { 
+                font-size: 2rem; 
+                margin-bottom: 1rem; 
+            }
             .status { 
                 display: inline-block;
                 background: #10b981;
@@ -77,23 +82,83 @@ app.get('/', (req, res) => {
                 border-radius: 50px;
                 font-weight: bold;
                 margin: 1rem 0;
+                font-size: 0.9rem;
             }
-            .links { margin: 2rem 0; }
+            .links { 
+                margin: 1.5rem 0; 
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
             .links a {
                 color: #60a5fa;
                 text-decoration: none;
-                margin: 0 1rem;
+                padding: 0.5rem 1rem;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 25px;
                 font-weight: 500;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+                border: 1px solid rgba(255, 255, 255, 0.2);
             }
-            .links a:hover { text-decoration: underline; }
+            .links a:hover { 
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateY(-2px);
+            }
             .endpoints {
                 background: rgba(0, 0, 0, 0.2);
-                padding: 1.5rem;
+                padding: 1rem;
                 border-radius: 10px;
                 margin: 1rem 0;
                 text-align: left;
             }
-            .endpoint { margin: 0.5rem 0; font-family: monospace; }
+            .endpoint { 
+                margin: 0.5rem 0; 
+                font-family: monospace; 
+                font-size: 0.85rem;
+                word-break: break-all;
+                padding: 0.5rem;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 5px;
+            }
+            .endpoints h3 {
+                margin-bottom: 0.5rem;
+                font-size: 1rem;
+            }
+            p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            
+            /* Mobile optimizations */
+            @media (max-width: 480px) {
+                body { padding: 0.5rem; }
+                .container { 
+                    padding: 1rem; 
+                    border-radius: 15px;
+                }
+                h1 { font-size: 1.5rem; }
+                .links {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .links a {
+                    width: 100%;
+                    max-width: 200px;
+                    text-align: center;
+                }
+                .endpoints {
+                    padding: 0.75rem;
+                }
+                .endpoint {
+                    font-size: 0.8rem;
+                    padding: 0.4rem;
+                }
+                p {
+                    font-size: 0.85rem;
+                }
+            }
         </style>
     </head>
     <body>
