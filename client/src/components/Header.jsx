@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   HiMenu,
@@ -10,19 +10,34 @@ import {
   HiMail,
   HiSun,
   HiMoon,
+  HiSparkles,
 } from "react-icons/hi";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 export default function Header({ darkMode, setDarkMode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { scrollY } = useScroll();
+  
+  // Transform scroll value for dynamic effects
+  const headerOpacity = useTransform(scrollY, [0, 100], [0.8, 0.95]);
+  const headerBlur = useTransform(scrollY, [0, 100], [12, 20]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
-    { name: "Home", path: "/", icon: <HiHome className="w-5 h-5" /> },
-    { name: "About", path: "/about", icon: <HiUser className="w-5 h-5" /> },
-    { name: "Projects", path: "/projects", icon: <HiFolder className="w-5 h-5" /> },
-    { name: "Resume", path: "/resume", icon: <HiDocumentText className="w-5 h-5" /> },
-    { name: "Contact", path: "/contact", icon: <HiMail className="w-5 h-5" /> },
+    { name: "Home", path: "/", icon: <HiHome className="w-4 h-4 sm:w-5 sm:h-5" />, color: "from-blue-500 to-cyan-500" },
+    { name: "About", path: "/about", icon: <HiUser className="w-4 h-4 sm:w-5 sm:h-5" />, color: "from-purple-500 to-pink-500" },
+    { name: "Projects", path: "/projects", icon: <HiFolder className="w-4 h-4 sm:w-5 sm:h-5" />, color: "from-green-500 to-emerald-500" },
+    { name: "Resume", path: "/resume", icon: <HiDocumentText className="w-4 h-4 sm:w-5 sm:h-5" />, color: "from-orange-500 to-red-500" },
+    { name: "Contact", path: "/contact", icon: <HiMail className="w-4 h-4 sm:w-5 sm:h-5" />, color: "from-indigo-500 to-purple-500" },
   ];
 
   return (
@@ -33,93 +48,213 @@ export default function Header({ darkMode, setDarkMode }) {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
       >
-        {/* Background with blur */}
-        <div className="absolute inset-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-700/50 shadow-lg" />
+        {/* Clean Background - Consistent with Home page */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/50 to-purple-50 dark:from-gray-950 dark:via-blue-950/20 dark:to-purple-950/20">
+          {/* Standardized grid pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808006_1px,transparent_1px),linear-gradient(to_bottom,#80808006_1px,transparent_1px)] bg-[size:48px_48px] lg:bg-[size:64px_64px]" />
+        </div>
 
-        {/* Gradient line at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50" />
+        {/* Enhanced backdrop blur overlay */}
+        <motion.div 
+          className="absolute inset-0 backdrop-blur-xl border-b border-white/20 dark:border-gray-700/30"
+          style={{
+            background: darkMode 
+              ? `rgba(17, 24, 39, ${headerOpacity})` 
+              : `rgba(255, 255, 255, ${headerOpacity})`,
+            backdropFilter: `blur(${headerBlur}px)`,
+          }}
+        />
+
+        {/* Animated gradient border */}
+        <motion.div 
+          className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent"
+          animate={{
+            opacity: [0.3, 0.8, 0.3],
+            background: [
+              "linear-gradient(to right, transparent, #3b82f6, transparent)",
+              "linear-gradient(to right, transparent, #8b5cf6, transparent)",
+              "linear-gradient(to right, transparent, #ec4899, transparent)",
+              "linear-gradient(to right, transparent, #3b82f6, transparent)"
+            ],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 sm:h-20">
-            {/* Logo */}
+            {/* Enhanced Logo */}
             <Link to="/" className="group relative z-10">
               <motion.div
-                className="flex items-center gap-2"
+                className="flex items-center gap-3"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {/* Logo Icon/Circle */}
+                {/* Enhanced Logo Icon with multiple layers */}
                 <div className="relative">
+                  {/* Outer glow ring */}
                   <motion.div
-                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-lg"
-                    whileHover={{ rotate: 360 }}
+                    className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 opacity-20 blur-md"
+                    animate={{
+                      opacity: [0.1, 0.3, 0.1],
+                      scale: [1, 1.1, 1],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                  
+                  {/* Main logo container */}
+                  <motion.div
+                    className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-2xl border border-white/20 dark:border-gray-700/30"
+                    whileHover={{ 
+                      rotate: 360,
+                      scale: 1.1,
+                    }}
                     transition={{ duration: 0.6 }}
                   >
-                    <span className="text-white font-black text-lg sm:text-xl">S</span>
+                    {/* Inner shine effect */}
+                    <motion.div
+                      className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-white/30 via-transparent to-transparent"
+                      animate={{
+                        opacity: [0.3, 0.6, 0.3],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                    
+                    {/* Logo letter with enhanced styling */}
+                    <span className="relative text-white font-black text-lg sm:text-xl drop-shadow-lg">
+                      S
+                    </span>
                   </motion.div>
+
+                  {/* Floating sparkle effect */}
                   <motion.div
-                    className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 blur-lg opacity-50"
+                    className="absolute -top-1 -right-1"
                     animate={{
-                      opacity: [0.3, 0.6, 0.3],
+                      rotate: 360,
+                      scale: [1, 1.2, 1],
                     }}
                     transition={{
                       duration: 2,
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
-                  />
+                  >
+                    <HiSparkles className="w-3 h-3 text-yellow-400" />
+                  </motion.div>
                 </div>
 
-                {/* Logo Text */}
+                {/* Enhanced Logo Text */}
                 <div className="hidden sm:block">
-                  <div className="text-xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 text-transparent bg-clip-text">
+                  <motion.div 
+                    className="text-xl sm:text-2xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 text-transparent bg-clip-text drop-shadow-sm"
+                    whileHover={{ scale: 1.02 }}
+                  >
                     Saurav Kumar
-                  </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 -mt-1">Full Stack Developer</div>
+                  </motion.div>
+                  <motion.div 
+                    className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 -mt-1 font-medium"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    Full Stack Developer
+                  </motion.div>
                 </div>
               </motion.div>
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-2">
-              {navItems.map((item) => {
+            {/* Enhanced Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {navItems.map((item, index) => {
                 const isActive = location.pathname === item.path;
                 return (
                   <Link key={item.name} to={item.path}>
                     <motion.div
-                      className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
-                        isActive
-                          ? "text-blue-600 dark:text-blue-400"
-                          : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                      }`}
-                      whileHover={{ scale: 1.05 }}
+                      className="relative group"
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      {/* Active background */}
+                      {/* Enhanced Active background with gradient */}
                       {isActive && (
                         <motion.div
                           layoutId="activeTab"
-                          className="absolute inset-0 bg-blue-100 dark:bg-blue-900/30 rounded-xl"
+                          className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-20 dark:opacity-30 rounded-2xl shadow-lg`}
                           transition={{ type: "spring", stiffness: 380, damping: 30 }}
                         />
                       )}
 
-                      {/* Content */}
-                      <div className="relative flex items-center gap-2">
-                        <motion.span
-                          whileHover={{ rotate: 360 }}
+                      {/* Content container */}
+                      <div className="relative flex items-center gap-2 px-4 py-3 rounded-2xl transition-all duration-300">
+                        {/* Icon with enhanced styling */}
+                        <motion.div
+                          className={`relative p-2 rounded-xl transition-all duration-300 ${
+                            isActive 
+                              ? `bg-gradient-to-r ${item.color} text-white shadow-lg` 
+                              : "text-gray-600 dark:text-gray-300 group-hover:text-white"
+                          }`}
+                          whileHover={{ 
+                            rotate: 360,
+                            scale: 1.1,
+                          }}
                           transition={{ duration: 0.5 }}
                         >
-                          {item.icon}
-                        </motion.span>
-                        <span className="hidden xl:inline">{item.name}</span>
+                          {/* Icon glow effect for active state */}
+                          {isActive && (
+                            <motion.div
+                              className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-30 blur-md rounded-xl`}
+                              animate={{
+                                opacity: [0.2, 0.4, 0.2],
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
+                            />
+                          )}
+                          <span className="relative z-10">
+                            {item.icon}
+                          </span>
+                        </motion.div>
+
+                        {/* Text with enhanced styling */}
+                        <span className={`hidden xl:inline font-semibold transition-all duration-300 ${
+                          isActive
+                            ? "text-gray-900 dark:text-white"
+                            : "text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white"
+                        }`}>
+                          {item.name}
+                        </span>
                       </div>
 
-                      {/* Hover effect */}
+                      {/* Enhanced hover effect */}
                       {!isActive && (
                         <motion.div
-                          className="absolute inset-0 bg-gray-100 dark:bg-gray-800 rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300"
+                          className="absolute inset-0 bg-gradient-to-r from-gray-100/50 to-gray-200/50 dark:from-gray-800/50 dark:to-gray-700/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm"
                           initial={{ opacity: 0 }}
+                        />
+                      )}
+
+                      {/* Bottom indicator for active state */}
+                      {isActive && (
+                        <motion.div
+                          className={`absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-gradient-to-r ${item.color} rounded-full`}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ type: "spring", stiffness: 500, damping: 30 }}
                         />
                       )}
                     </motion.div>
@@ -127,56 +262,102 @@ export default function Header({ darkMode, setDarkMode }) {
                 );
               })}
 
-              {/* Desktop Theme Toggle */}
-              <motion.button
-                onClick={() => setDarkMode(!darkMode)}
-                className="relative ml-2 w-14 h-8 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors duration-300 shadow-inner"
-                whileTap={{ scale: 0.95 }}
+              {/* Enhanced Desktop Theme Toggle */}
+              <motion.div
+                className="relative ml-3"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5 }}
               >
-                <motion.div
-                  className="absolute top-1 left-1 w-6 h-6 rounded-full bg-white dark:bg-gray-900 shadow-lg flex items-center justify-center"
-                  animate={{
-                    x: darkMode ? 24 : 0,
-                  }}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                <motion.button
+                  onClick={() => setDarkMode(!darkMode)}
+                  className="relative w-16 h-9 rounded-full bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 transition-all duration-300 shadow-lg border border-white/20 dark:border-gray-600/20"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {darkMode ? (
-                    <HiMoon className="w-4 h-4 text-blue-500" />
-                  ) : (
-                    <HiSun className="w-4 h-4 text-yellow-500" />
-                  )}
-                </motion.div>
-              </motion.button>
+                  {/* Background gradient animation */}
+                  <motion.div
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-0"
+                    animate={{
+                      opacity: darkMode ? 0.2 : 0.1,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  
+                  {/* Toggle button */}
+                  <motion.div
+                    className="absolute top-1 left-1 w-7 h-7 rounded-full bg-white dark:bg-gray-900 shadow-xl flex items-center justify-center border border-gray-200 dark:border-gray-700"
+                    animate={{
+                      x: darkMode ? 28 : 0,
+                      rotate: darkMode ? 180 : 0,
+                    }}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  >
+                    <AnimatePresence mode="wait">
+                      {darkMode ? (
+                        <motion.div
+                          key="moon"
+                          initial={{ rotate: -90, opacity: 0 }}
+                          animate={{ rotate: 0, opacity: 1 }}
+                          exit={{ rotate: 90, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <HiMoon className="w-4 h-4 text-blue-500" />
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          key="sun"
+                          initial={{ rotate: 90, opacity: 0 }}
+                          animate={{ rotate: 0, opacity: 1 }}
+                          exit={{ rotate: -90, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <HiSun className="w-4 h-4 text-yellow-500" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </motion.button>
+              </motion.div>
             </nav>
 
-            {/* Mobile Menu Button */}
+            {/* Enhanced Mobile Menu Button */}
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden relative p-2 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-              whileHover={{ scale: 1.05 }}
+              className="lg:hidden relative p-3 rounded-2xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 hover:from-gray-200 hover:to-gray-300 dark:hover:from-gray-700 dark:hover:to-gray-600 transition-all duration-300 shadow-lg border border-white/20 dark:border-gray-600/20"
+              whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Toggle menu"
             >
+              {/* Button glow effect */}
+              <motion.div
+                className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0"
+                animate={{
+                  opacity: isOpen ? 0.3 : 0,
+                }}
+                transition={{ duration: 0.3 }}
+              />
+              
               <AnimatePresence mode="wait">
                 {isOpen ? (
                   <motion.div
                     key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                    initial={{ rotate: -90, opacity: 0, scale: 0.8 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: 90, opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
                   >
-                    <HiX className="w-6 h-6" />
+                    <HiX className="w-6 h-6 text-gray-700 dark:text-gray-300" />
                   </motion.div>
                 ) : (
                   <motion.div
                     key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                    initial={{ rotate: 90, opacity: 0, scale: 0.8 }}
+                    animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                    exit={{ rotate: -90, opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
                   >
-                    <HiMenu className="w-6 h-6" />
+                    <HiMenu className="w-6 h-6 text-gray-700 dark:text-gray-300" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -184,13 +365,13 @@ export default function Header({ darkMode, setDarkMode }) {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Enhanced Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
             <>
-              {/* Backdrop */}
+              {/* Enhanced Backdrop */}
               <motion.div
-                className="fixed inset-0 bg-black/50 backdrop-blur-sm lg:hidden"
+                className="fixed inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/60 backdrop-blur-md lg:hidden"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -198,55 +379,118 @@ export default function Header({ darkMode, setDarkMode }) {
                 style={{ top: "4rem" }}
               />
 
-              {/* Mobile Menu */}
+              {/* Enhanced Mobile Menu */}
               <motion.div
                 className="fixed left-0 right-0 lg:hidden overflow-hidden"
                 style={{ top: "4rem" }}
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                initial={{ height: 0, opacity: 0, y: -20 }}
+                animate={{ height: "auto", opacity: 1, y: 0 }}
+                exit={{ height: 0, opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
               >
-                <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-700/50 shadow-2xl mx-4 mt-4 rounded-2xl overflow-hidden">
+                <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-2xl border border-white/20 dark:border-gray-700/30 shadow-2xl mx-4 mt-4 rounded-3xl overflow-hidden">
+                  {/* Menu header */}
+                  <motion.div 
+                    className="p-4 border-b border-gray-200/50 dark:border-gray-700/50"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">S</span>
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-gray-900 dark:text-white">Navigation</div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400">Choose a page</div>
+                      </div>
+                    </div>
+                  </motion.div>
+
                   <nav className="p-4 space-y-2">
                     {navItems.map((item, index) => {
                       const isActive = location.pathname === item.path;
                       return (
                         <motion.div
                           key={item.name}
-                          initial={{ x: -20, opacity: 0 }}
+                          initial={{ x: -30, opacity: 0 }}
                           animate={{ x: 0, opacity: 1 }}
-                          transition={{ delay: index * 0.05 }}
+                          transition={{ delay: 0.2 + index * 0.05 }}
                         >
                           <Link
                             to={item.path}
                             onClick={() => setIsOpen(false)}
                           >
                             <motion.div
-                              className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
+                              className={`group relative flex items-center gap-4 px-4 py-4 rounded-2xl font-medium transition-all duration-300 overflow-hidden ${
                                 isActive
-                                  ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg"
-                                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                                  ? `bg-gradient-to-r ${item.color} text-white shadow-xl`
+                                  : "text-gray-700 dark:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-800/80"
                               }`}
                               whileHover={{ scale: 1.02, x: 5 }}
                               whileTap={{ scale: 0.98 }}
                             >
-                              <motion.span
-                                whileHover={{ rotate: 360 }}
+                              {/* Background glow for active state */}
+                              {isActive && (
+                                <motion.div
+                                  className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-20 blur-xl`}
+                                  animate={{
+                                    opacity: [0.1, 0.3, 0.1],
+                                  }}
+                                  transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                  }}
+                                />
+                              )}
+
+                              {/* Icon container */}
+                              <motion.div
+                                className={`relative p-3 rounded-xl transition-all duration-300 ${
+                                  isActive 
+                                    ? "bg-white/20 text-white" 
+                                    : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 group-hover:bg-white/10"
+                                }`}
+                                whileHover={{ 
+                                  rotate: 360,
+                                  scale: 1.1,
+                                }}
                                 transition={{ duration: 0.5 }}
                               >
-                                {item.icon}
-                              </motion.span>
-                              <span>{item.name}</span>
+                                <span className="relative z-10">
+                                  {item.icon}
+                                </span>
+                              </motion.div>
+
+                              {/* Text */}
+                              <div className="flex-1">
+                                <span className="text-base font-semibold">{item.name}</span>
+                                {isActive && (
+                                  <motion.div
+                                    className="text-xs opacity-80 mt-1"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 0.8 }}
+                                    transition={{ delay: 0.1 }}
+                                  >
+                                    Current page
+                                  </motion.div>
+                                )}
+                              </div>
+
+                              {/* Active indicator */}
                               {isActive && (
                                 <motion.div
                                   className="ml-auto"
-                                  initial={{ scale: 0 }}
-                                  animate={{ scale: 1 }}
+                                  initial={{ scale: 0, rotate: -180 }}
+                                  animate={{ scale: 1, rotate: 0 }}
+                                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
                                 >
-                                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                  </svg>
+                                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                  </div>
                                 </motion.div>
                               )}
                             </motion.div>
@@ -255,45 +499,78 @@ export default function Header({ darkMode, setDarkMode }) {
                       );
                     })}
 
-                    {/* Mobile Theme Toggle */}
+                    {/* Enhanced Mobile Theme Toggle */}
                     <motion.div
-                      initial={{ x: -20, opacity: 0 }}
+                      initial={{ x: -30, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: navItems.length * 0.05 }}
-                      className="pt-4 border-t border-gray-200 dark:border-gray-700"
+                      transition={{ delay: 0.2 + navItems.length * 0.05 }}
+                      className="pt-4 border-t border-gray-200/50 dark:border-gray-700/50"
                     >
-                      <button
+                      <motion.button
                         onClick={() => {
                           setDarkMode(!darkMode);
                           setIsOpen(false);
                         }}
-                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                        className="w-full flex items-center justify-between px-4 py-4 rounded-2xl bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 hover:from-gray-200 hover:to-gray-300 dark:hover:from-gray-700 dark:hover:to-gray-600 transition-all duration-300 shadow-lg border border-white/20 dark:border-gray-600/20"
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
                       >
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-4">
                           <motion.div
+                            className="p-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg"
                             animate={{ rotate: darkMode ? 360 : 0 }}
                             transition={{ duration: 0.5 }}
                           >
                             {darkMode ? (
-                              <HiMoon className="w-5 h-5 text-blue-500" />
+                              <HiMoon className="w-5 h-5" />
                             ) : (
-                              <HiSun className="w-5 h-5 text-yellow-500" />
+                              <HiSun className="w-5 h-5" />
                             )}
                           </motion.div>
-                          <span className="font-medium text-gray-700 dark:text-gray-300">
-                            {darkMode ? "Dark Mode" : "Light Mode"}
-                          </span>
+                          <div className="text-left">
+                            <div className="font-semibold text-gray-700 dark:text-gray-300">
+                              {darkMode ? "Dark Mode" : "Light Mode"}
+                            </div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400">
+                              Toggle theme
+                            </div>
+                          </div>
                         </div>
-                        <div className="w-11 h-6 rounded-full bg-gray-300 dark:bg-gray-600 relative">
+                        <div className="w-12 h-7 rounded-full bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-500 relative shadow-inner">
                           <motion.div
-                            className="absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-md"
+                            className="absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white dark:bg-gray-900 shadow-lg flex items-center justify-center border border-gray-200 dark:border-gray-700"
                             animate={{
                               x: darkMode ? 20 : 0,
+                              rotate: darkMode ? 180 : 0,
                             }}
                             transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                          />
+                          >
+                            <AnimatePresence mode="wait">
+                              {darkMode ? (
+                                <motion.div
+                                  key="moon"
+                                  initial={{ rotate: -90, opacity: 0 }}
+                                  animate={{ rotate: 0, opacity: 1 }}
+                                  exit={{ rotate: 90, opacity: 0 }}
+                                  transition={{ duration: 0.2 }}
+                                >
+                                  <HiMoon className="w-3 h-3 text-blue-500" />
+                                </motion.div>
+                              ) : (
+                                <motion.div
+                                  key="sun"
+                                  initial={{ rotate: 90, opacity: 0 }}
+                                  animate={{ rotate: 0, opacity: 1 }}
+                                  exit={{ rotate: -90, opacity: 0 }}
+                                  transition={{ duration: 0.2 }}
+                                >
+                                  <HiSun className="w-3 h-3 text-yellow-500" />
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </motion.div>
                         </div>
-                      </button>
+                      </motion.button>
                     </motion.div>
                   </nav>
                 </div>
@@ -303,8 +580,6 @@ export default function Header({ darkMode, setDarkMode }) {
         </AnimatePresence>
       </motion.header>
 
-      {/* ✅ Spacer to push content down */}
-      <div className="h-16 sm:h-20" />
     </>
   );
 }

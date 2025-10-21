@@ -6,6 +6,7 @@ const API = axios.create({
   baseURL:
     import.meta.env.VITE_BACKEND_URL ||
     'http://localhost:5000/api', // fallback for local dev
+  timeout: 10000, // 10 second timeout
 });
 
 // ✅ Projects

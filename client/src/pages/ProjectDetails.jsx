@@ -8,6 +8,7 @@ export default function ProjectDetails() {
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [linkLoading, setLinkLoading] = useState({ demo: false, repo: false });
 
   const touchStartX = useRef(null);
   const touchEndX = useRef(null);
@@ -49,6 +50,14 @@ export default function ProjectDetails() {
     touchEndX.current = null;
   };
 
+  const handleLinkClick = (type) => {
+    setLinkLoading(prev => ({ ...prev, [type]: true }));
+    // Reset loading state after a delay to show the loading animation
+    setTimeout(() => {
+      setLinkLoading(prev => ({ ...prev, [type]: false }));
+    }, 2000);
+  };
+
   if (loading) return <LoadingPlaceholder />;
   if (!project) return <ProjectNotFound />;
 
@@ -62,7 +71,7 @@ export default function ProjectDetails() {
       className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50 dark:from-gray-950 dark:via-blue-950/30 dark:to-gray-900"
     >
       {/* Background decoration */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      <div className="fixed inset-0 top-16 sm:top-20 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -left-40 w-80 h-80 lg:w-96 lg:h-96 bg-blue-400/10 rounded-full blur-3xl" />
         <div className="absolute -bottom-40 -right-40 w-80 h-80 lg:w-96 lg:h-96 bg-purple-400/10 rounded-full blur-3xl" />
       </div>
@@ -171,7 +180,7 @@ export default function ProjectDetails() {
             </motion.div>
           )}
 
-          <ProjectContent project={project} />
+          <ProjectContent project={project} linkLoading={linkLoading} handleLinkClick={handleLinkClick} />
         </motion.div>
       </motion.div>
     </motion.section>
@@ -274,7 +283,7 @@ const ProjectNotFound = () => (
 );
 
 // Enhanced Project Content Component
-const ProjectContent = ({ project }) => (
+const ProjectContent = ({ project, linkLoading, handleLinkClick }) => (
   <>
     <motion.h1
       initial={{ opacity: 0, y: 20 }}
@@ -368,12 +377,27 @@ const ProjectContent = ({ project }) => (
           href={project.demoLink}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => handleLinkClick('demo')}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="group inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-2xl hover:shadow-xl transition-all duration-300 font-semibold text-sm sm:text-base"
+          className="group inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-2xl hover:shadow-xl transition-all duration-300 font-semibold text-sm sm:text-base relative overflow-hidden"
         >
-          <span>View Live Demo</span>
-          <svg className="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {linkLoading.demo && (
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div
+                className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              />
+            </motion.div>
+          )}
+          <span className={linkLoading.demo ? "opacity-0" : "opacity-100 transition-opacity"}>View Live Demo</span>
+          <svg className={`w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform ${linkLoading.demo ? "opacity-0" : "opacity-100"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
         </motion.a>
@@ -383,12 +407,27 @@ const ProjectContent = ({ project }) => (
           href={project.repoLink}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => handleLinkClick('repo')}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="group inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-white/90 dark:bg-gray-800/90 text-gray-900 dark:text-white rounded-2xl hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 font-semibold text-sm sm:text-base"
+          className="group inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-white/90 dark:bg-gray-800/90 text-gray-900 dark:text-white rounded-2xl hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 font-semibold text-sm sm:text-base relative overflow-hidden"
         >
-          <span>View Source Code</span>
-          <svg className="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {linkLoading.repo && (
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div
+                className="w-5 h-5 border-2 border-gray-400/30 border-t-gray-600 dark:border-gray-300/30 dark:border-t-gray-200 rounded-full"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              />
+            </motion.div>
+          )}
+          <span className={linkLoading.repo ? "opacity-0" : "opacity-100 transition-opacity"}>View Source Code</span>
+          <svg className={`w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform ${linkLoading.repo ? "opacity-0" : "opacity-100"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
           </svg>
         </motion.a>
