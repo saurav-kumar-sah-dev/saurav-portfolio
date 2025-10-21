@@ -9,20 +9,40 @@ await newMsg.save();
 
 // Try to send email (optional - don't fail if email fails)
 try {
-  if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+  if (process.env.SENDGRID_API_KEY) {
+    // Use SendGrid for reliable email delivery in production
+    const sgMail = require('@sendgrid/mail');
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    
+    const msg = {
+      to: process.env.EMAIL_USER || 'sauravshubham903@gmail.com',
+      from: process.env.EMAIL_USER || 'sauravshubham903@gmail.com',
+      subject: `Portfolio Contact from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+      html: `
+        <h3>New Contact Form Submission</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `
+    };
+    
+    await sgMail.send(msg);
+    console.log('Email sent successfully via SendGrid!');
+  } else if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+    // Fallback to Gmail (works locally, may fail in production)
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
       },
-      // Add timeout and connection settings
-      connectionTimeout: 10000, // 10 seconds
-      greetingTimeout: 10000,   // 10 seconds
-      socketTimeout: 10000,     // 10 seconds
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 10000,
     });
     
-    // Set a timeout for the email sending
     const emailPromise = transporter.sendMail({
       from: email,
       to: process.env.EMAIL_USER,
@@ -30,7 +50,6 @@ try {
       text: message
     });
     
-    // Race between email sending and timeout
     await Promise.race([
       emailPromise,
       new Promise((_, reject) => 
@@ -38,9 +57,9 @@ try {
       )
     ]);
     
-    console.log('Email sent successfully!');
+    console.log('Email sent successfully via Gmail!');
   } else {
-    console.log('Email credentials not configured - skipping email send');
+    console.log('No email credentials configured - skipping email send');
   }
 } catch (emailError) {
   console.error('Email sending failed:', emailError.message);
