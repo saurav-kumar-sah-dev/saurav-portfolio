@@ -23,7 +23,6 @@ export default function ContactForm() {
         setStatus({ loading: false, success: null, error: null });
       }, 5000);
     } catch (err) {
-      console.error('Contact form error:', err);
       
       // Provide more specific error messages
       let errorMessage = 'Failed to send message. Try again later.';

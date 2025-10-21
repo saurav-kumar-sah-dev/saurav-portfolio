@@ -7,19 +7,8 @@ try {
 const newMsg = new Message({ name, email, message });
 await newMsg.save();
 
-// Debug environment variables
-console.log('Environment variables check:', {
-  SENDGRID_API_KEY: process.env.SENDGRID_API_KEY ? 'SET' : 'NOT SET',
-  EMAIL_USER: process.env.EMAIL_USER ? 'SET' : 'NOT SET',
-  EMAIL_PASS: process.env.EMAIL_PASS ? 'SET' : 'NOT SET'
-});
-
 // Try to send email (optional - don't fail if email fails)
 try {
-  console.log('Email config check:', {
-    hasSendGrid: !!process.env.SENDGRID_API_KEY,
-    hasGmail: !!(process.env.EMAIL_USER && process.env.EMAIL_PASS)
-  });
   
   if (process.env.SENDGRID_API_KEY) {
     // Use SendGrid for reliable email delivery in production
@@ -51,7 +40,6 @@ try {
     };
     
     await sgMail.send(msg);
-    console.log('✅ Email sent successfully via SendGrid!');
   } else if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
     // Fallback to Gmail (works locally, may fail in production)
     const transporter = nodemailer.createTransport({
@@ -98,19 +86,13 @@ try {
       )
     ]);
     
-    console.log('✅ Email sent successfully via Gmail!');
-  } else {
-    console.log('⚠️ No email credentials configured - skipping email send');
   }
 } catch (emailError) {
-  console.error('❌ Email sending failed:', emailError.message);
-  console.error('Full error details:', emailError);
   // Don't fail the request if email fails
 }
 
 res.json({ success: true, message: 'Message sent successfully!' });
 } catch (err) {
-console.error('Error saving message:', err.message);
 res.status(500).json({ error: 'Failed to save message' });
 }
 };

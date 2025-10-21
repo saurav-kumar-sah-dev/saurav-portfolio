@@ -8,7 +8,6 @@ router.get('/', async (req, res) => {
     const projects = await Project.find().sort({ order: 1, createdAt: -1 });
     res.json(projects);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: 'Server error' });
   }
 });
@@ -50,7 +49,6 @@ router.post('/', async (req, res) => {
     await project.save();
     res.status(201).json(project);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: 'Server error' });
   }
 });
@@ -62,7 +60,6 @@ router.get('/:id', async (req, res) => {
     if (!project) return res.status(404).json({ error: 'Project not found' });
     res.json(project);
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: 'Server error' });
   }
 });

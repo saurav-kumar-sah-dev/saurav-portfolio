@@ -22,16 +22,12 @@ const API = axios.create({
   timeout: 10000, // 10 second timeout for deployment
 });
 
-// Add request interceptor for debugging
+// Add request interceptor
 API.interceptors.request.use(
   (config) => {
-    console.log('🚀 API Request:', config.baseURL + config.url);
-    console.log('🌍 Environment:', import.meta.env.MODE);
-    console.log('🔗 Backend URL:', getBaseURL());
     return config;
   },
   (error) => {
-    console.error('❌ API Request Error:', error);
     return Promise.reject(error);
   }
 );
@@ -39,22 +35,9 @@ API.interceptors.request.use(
 // Add response interceptor for better error handling
 API.interceptors.response.use(
   (response) => {
-    console.log('✅ API Response:', response.status, response.config.url);
     return response;
   },
   (error) => {
-    console.error('❌ API Response Error:', {
-      status: error.response?.status,
-      url: error.config?.url,
-      message: error.message,
-      fullError: error
-    });
-    
-    // Provide more helpful error messages
-    if (error.code === 'NETWORK_ERROR' || !error.response) {
-      console.error('🌐 Network Error - Check if backend is running and accessible');
-    }
-    
     return Promise.reject(error);
   }
 );

@@ -25,7 +25,7 @@ export default function ProjectDetails() {
             : [];
         setProject({ ...p, images });
       })
-      .catch((err) => console.error("Error loading project:", err))
+      .catch((err) => {})
       .finally(() => setLoading(false));
   }, [id]);
 

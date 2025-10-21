@@ -54,7 +54,6 @@ export default function About() {
         clearTimeout(timeout3);
       })
       .catch((err) => {
-        console.error(err);
         setLoading(false);
         clearTimeout(timeout1);
         clearTimeout(timeout2);

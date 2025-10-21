@@ -23,7 +23,6 @@ router.get('/', async (_req, res) => {
 
     res.json({ skills, experience, achievements, certifications, currentFocus });
   } catch (err) {
-    console.error(err);
     res.status(500).json({ error: 'Server error' });
   }
 });

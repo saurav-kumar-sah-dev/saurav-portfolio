@@ -84,7 +84,6 @@ export default function Projects() {
         setProjects(projectsData || []);
       })
       .catch(err => {
-        console.error('Error fetching projects:', err);
         const errorMessage = err.response?.status === 404 
           ? 'Backend server not found. Please check if the server is deployed.'
           : err.code === 'ECONNREFUSED'
@@ -457,7 +456,6 @@ export default function Projects() {
                           setProjects(projectsData || []);
                         })
                         .catch(err => {
-                          console.error('Error fetching projects on retry:', err);
                           setApiError(err.message || 'Failed to fetch projects');
                         })
                         .finally(() => setLoading(false));
