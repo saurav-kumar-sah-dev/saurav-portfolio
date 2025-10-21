@@ -7,6 +7,13 @@ try {
 const newMsg = new Message({ name, email, message });
 await newMsg.save();
 
+// Debug environment variables
+console.log('Environment variables check:', {
+  SENDGRID_API_KEY: process.env.SENDGRID_API_KEY ? 'SET' : 'NOT SET',
+  EMAIL_USER: process.env.EMAIL_USER ? 'SET' : 'NOT SET',
+  EMAIL_PASS: process.env.EMAIL_PASS ? 'SET' : 'NOT SET'
+});
+
 // Try to send email (optional - don't fail if email fails)
 try {
   console.log('Email config check:', {
