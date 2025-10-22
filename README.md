@@ -42,8 +42,8 @@ Showcase your projects, skills, experience, achievements, and certifications wit
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/portfolio.git
-   cd portfolio
+   git clone https://github.com/saurav-kumar-sah-dev/saurav-portfolio.git
+   cd saurav-portfolio
    ```
 
 2. **Install Frontend Dependencies**
@@ -285,6 +285,34 @@ PORT=5000
 - ✅ **Loading States**: Improved loading experience with progressive messages
 - ✅ **Backend Welcome Page**: Professional, clean design with consistent styling
 - ✅ **API Documentation**: Clear endpoint display with method badges and descriptions
+- ✅ **Professional Repository Structure**: Added MIT License, issue templates, and CI/CD pipeline
+- ✅ **GitHub Actions**: Automated testing, building, and deployment workflow
+- ✅ **Release Management**: Version 1.0.0 tagged and released
+- ✅ **Contributing Guidelines**: Comprehensive CONTRIBUTING.md and templates
+
+---
+
+## 🏆 Repository Features
+
+### 🔧 **Development & CI/CD**
+- ✅ **GitHub Actions**: Automated testing and deployment pipeline
+- ✅ **Issue Templates**: Structured bug reports and feature requests
+- ✅ **Pull Request Template**: Comprehensive code review guidelines
+- ✅ **Security Scanning**: Automated vulnerability detection
+- ✅ **Code Quality**: CodeQL analysis and linting
+
+### 📚 **Documentation & Guidelines**
+- ✅ **MIT License**: Open-source compliance
+- ✅ **CONTRIBUTING.md**: Complete contribution guidelines
+- ✅ **CHANGELOG.md**: Version history and release notes
+- ✅ **API Documentation**: Comprehensive endpoint documentation
+- ✅ **Installation Guide**: Step-by-step setup instructions
+
+### 🚀 **Release Management**
+- ✅ **Semantic Versioning**: Professional version control
+- ✅ **Release Tags**: v1.0.0 and future releases
+- ✅ **Changelog**: Detailed release notes
+- ✅ **Automated Deployment**: CI/CD pipeline integration
 
 ---
 
