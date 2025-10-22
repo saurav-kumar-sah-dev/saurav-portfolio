@@ -8,7 +8,7 @@ Showcase your projects, skills, experience, achievements, and certifications wit
 ## 🌐 Connect & Live Demo  
 
 [**View Deployed App**](https://saurav-portfolio-dun.vercel.app/) ✅ *(Live Now)*  
-[**Linkedin Profile**](https://www.linkedin.com/in/sauravkumarsah-dev/) ✅ *(View My linkedin Profile)*  
+[**LinkedIn Announcement Post**](https://www.linkedin.com/posts/sauravkumarsah-dev_mern-reactjs-nodejs-activity-7373901145922183168-cLiE?utm_source=share&utm_medium=member_desktop&rcm=ACoAADzT84EBx_LhVv32fYVUqjOTRutIkbU6iZk) ✅ *(Project Post)*  
 
 ---
 
@@ -189,7 +189,6 @@ Portfolio/
   {
     "name": "John Doe",
     "email": "john@example.com",
-    "subject": "Project Inquiry",
     "message": "Hello, I'm interested in your services..."
   }
   ```
@@ -199,28 +198,56 @@ Portfolio/
 - **GET** `/projects/:id` - Get specific project by ID
 
 #### 👤 **About Section**
-- **GET** `/about/skills` - Get skills data
-- **GET** `/about/experience` - Get experience data
-- **GET** `/about/achievements` - Get achievements data
-- **GET** `/about/certifications` - Get certifications data
+- **GET** `/about` - Get combined about data:
+  - `skills`
+  - `experience`
+  - `achievements`
+  - `certifications`
+  - `currentFocus`
 
-### Response Format
-```json
-{
-  "success": true,
-  "data": { ... },
-  "message": "Operation successful"
-}
-```
+### Response Examples
 
-### Error Format
-```json
-{
-  "success": false,
-  "error": "Error message",
-  "status": 400
-}
-```
+- GET `/projects` → returns an array of projects
+  ```json
+  [
+    {
+      "_id": "...",
+      "title": "Project Title",
+      "description": "...",
+      "techStack": ["React", "Node.js"],
+      "imageUrls": ["https://..."],
+      "demoLink": "https://...",
+      "repoLink": "https://..."
+    }
+  ]
+  ```
+
+- GET `/projects/:id` → returns a single project or 404
+  ```json
+  {
+    "_id": "...",
+    "title": "Project Title",
+    "description": "..."
+  }
+  ```
+
+- GET `/about` → returns combined about data
+  ```json
+  {
+    "skills": [ { "name": "JavaScript", "level": 90 } ],
+    "experience": [ { "role": "Developer", "company": "..." } ],
+    "achievements": [ { "title": "..." } ],
+    "certifications": [ { "title": "..." } ],
+    "currentFocus": ["..."]
+  }
+  ```
+
+- POST `/messages` → returns success
+  ```json
+  { "success": true, "message": "Message sent successfully!" }
+  ```
+
+Note: The JSON welcome endpoint is available at `/api`.
 
 ---
 
@@ -254,16 +281,16 @@ The contact form is fully functional with:
 - **Professional Templates**: HTML formatted emails
 - **Error Handling**: Graceful fallbacks
 
-**Note**: New SendGrid accounts may have emails go to spam initially. This improves over time as email reputation builds.
-
 ---
 
 ## 🔧 Environment Variables
 
 ### Frontend (Vercel)
 ```
-VITE_BACKEND_URL=https://saurav-portfolio-vx82.onrender.com/api
+VITE_BACKEND_URL=https://your-backend.example.com/api
 ```
+
+Note: Use your own backend API URL here. The public demo uses Render, but you should set your own endpoint when deploying/forking.
 
 ### Backend (Render)
 ```
@@ -278,75 +305,7 @@ PORT=5000
 
 ## 🎯 Recent Updates
 
-- ✅ **Social Links Updated**: X (Twitter) profile links now point to actual profile
-- ✅ **Footer Alignment Fixed**: "Connect With Me" section centered on all devices  
-- ✅ **Console Cleanup**: Removed debug logs for production-ready code
-- ✅ **Error Handling**: Enhanced user experience with graceful fallbacks
-- ✅ **Loading States**: Improved loading experience with progressive messages
-- ✅ **Backend Welcome Page**: Professional, clean design with consistent styling
-- ✅ **API Documentation**: Clear endpoint display with method badges and descriptions
-- ✅ **Professional Repository Structure**: Added MIT License, issue templates, and CI/CD pipeline
-- ✅ **GitHub Actions**: Automated testing, building, and deployment workflow
-- ✅ **Release Management**: Version 1.0.0 tagged and released
-- ✅ **Contributing Guidelines**: Comprehensive CONTRIBUTING.md and templates
-
----
-
-## 🏆 Repository Features
-
-### 🔧 **Development & CI/CD**
-- ✅ **GitHub Actions**: Automated testing and deployment pipeline
-- ✅ **Issue Templates**: Structured bug reports and feature requests
-- ✅ **Pull Request Template**: Comprehensive code review guidelines
-- ✅ **Security Scanning**: Automated vulnerability detection
-- ✅ **Code Quality**: CodeQL analysis and linting
-
-### 📚 **Documentation & Guidelines**
-- ✅ **MIT License**: Open-source compliance
-- ✅ **CONTRIBUTING.md**: Complete contribution guidelines
-- ✅ **CHANGELOG.md**: Version history and release notes
-- ✅ **API Documentation**: Comprehensive endpoint documentation
-- ✅ **Installation Guide**: Step-by-step setup instructions
-
-### 🚀 **Release Management**
-- ✅ **Semantic Versioning**: Professional version control
-- ✅ **Release Tags**: v1.0.0 and future releases
-- ✅ **Changelog**: Detailed release notes
-- ✅ **Automated Deployment**: CI/CD pipeline integration
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
-
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **Commit your changes**
-   ```bash
-   git commit -m 'Add some amazing feature'
-   ```
-4. **Push to the branch**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-5. **Open a Pull Request**
-
-### Development Guidelines
-- Follow the existing code style and structure
-- Add comments for complex logic
-- Test your changes thoroughly
-- Update documentation if needed
-
-### Reporting Issues
-If you find a bug or have a suggestion, please:
-1. Check if the issue already exists
-2. Create a new issue with a clear description
-3. Include steps to reproduce (for bugs)
-4. Add screenshots if applicable
+- Project is live on Vercel (frontend) and Render (backend)
 
 ---
 
