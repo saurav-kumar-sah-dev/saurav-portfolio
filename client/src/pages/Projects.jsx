@@ -5,40 +5,131 @@ import { motion } from 'framer-motion';
 
 const ProjectCardSkeleton = () => (
   <motion.div
-    className="group relative overflow-hidden"
+    className="group relative overflow-hidden h-full"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
+    whileHover={{ y: -5, scale: 1.02 }}
+    transition={{ duration: 0.3, ease: "easeOut" }}
   >
-    {/* Card Background with glass effect */}
-    <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-white/40 dark:from-gray-800/60 dark:to-gray-800/40 backdrop-blur-xl rounded-3xl shadow-xl" />
+    {/* Enhanced Card Background with glass effect */}
+    <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/60 to-white/40 dark:from-gray-800/80 dark:via-gray-800/60 dark:to-gray-800/40 backdrop-blur-2xl rounded-3xl shadow-xl border border-white/20 dark:border-gray-700/20" />
     
     {/* Animated gradient border */}
-    <div className="absolute -inset-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
+    <motion.div 
+      className="absolute -inset-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 blur-sm"
+      animate={{
+        background: [
+          "linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899)",
+          "linear-gradient(45deg, #ec4899, #3b82f6, #8b5cf6)",
+          "linear-gradient(45deg, #8b5cf6, #ec4899, #3b82f6)"
+        ]
+      }}
+      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+    />
+    
+    {/* Shimmer effect overlay */}
+    <motion.div
+      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100"
+      animate={{ x: ["-100%", "100%"] }}
+      transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+    />
     
     {/* Card Content */}
     <div className="relative p-4 sm:p-6 lg:p-8 h-full flex flex-col">
-      {/* Image skeleton */}
-      <div className="relative aspect-[4/3] sm:aspect-video mb-4 sm:mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 animate-pulse" />
+      {/* Enhanced Image skeleton */}
+      <motion.div 
+        className="relative aspect-[4/3] sm:aspect-video mb-4 sm:mb-6 overflow-hidden rounded-2xl bg-gradient-to-br from-gray-200/80 to-gray-300/80 dark:from-gray-700/80 dark:to-gray-600/80"
+        animate={{
+          background: [
+            "linear-gradient(45deg, #e5e7eb, #d1d5db)",
+            "linear-gradient(45deg, #d1d5db, #e5e7eb)",
+            "linear-gradient(45deg, #e5e7eb, #d1d5db)"
+          ]
+        }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        {/* Animated placeholder icon */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </motion.div>
+      </motion.div>
 
-      {/* Title skeleton */}
-      <div className="h-6 sm:h-8 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-xl mb-3 sm:mb-4 animate-pulse" />
+      {/* Enhanced Title skeleton */}
+      <motion.div 
+        className="h-6 sm:h-8 bg-gradient-to-r from-gray-200/80 to-gray-300/80 dark:from-gray-700/80 dark:to-gray-600/80 rounded-xl mb-3 sm:mb-4"
+        animate={{
+          background: [
+            "linear-gradient(90deg, #e5e7eb, #d1d5db, #e5e7eb)",
+            "linear-gradient(90deg, #d1d5db, #e5e7eb, #d1d5db)"
+          ]
+        }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+      />
 
-      {/* Description skeleton */}
+      {/* Enhanced Description skeleton */}
       <div className="space-y-2 mb-4 sm:mb-6 flex-grow">
-        <div className="h-3 sm:h-4 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-lg animate-pulse" />
-        <div className="h-3 sm:h-4 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-lg animate-pulse w-3/4" />
+        <motion.div 
+          className="h-3 sm:h-4 bg-gradient-to-r from-gray-200/80 to-gray-300/80 dark:from-gray-700/80 dark:to-gray-600/80 rounded-lg"
+          animate={{
+            background: [
+              "linear-gradient(90deg, #e5e7eb, #d1d5db, #e5e7eb)",
+              "linear-gradient(90deg, #d1d5db, #e5e7eb, #d1d5db)"
+            ]
+          }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+        />
+        <motion.div 
+          className="h-3 sm:h-4 bg-gradient-to-r from-gray-200/80 to-gray-300/80 dark:from-gray-700/80 dark:to-gray-600/80 rounded-lg w-3/4"
+          animate={{
+            background: [
+              "linear-gradient(90deg, #e5e7eb, #d1d5db, #e5e7eb)",
+              "linear-gradient(90deg, #d1d5db, #e5e7eb, #d1d5db)"
+            ]
+          }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+        />
       </div>
 
-      {/* Tech stack skeleton */}
+      {/* Enhanced Tech stack skeleton */}
       <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
-        <div className="h-6 sm:h-7 w-14 sm:w-16 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-full animate-pulse" />
-        <div className="h-6 sm:h-7 w-14 sm:w-16 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-full animate-pulse" />
-        <div className="h-6 sm:h-7 w-14 sm:w-16 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-full animate-pulse" />
+        {[1, 2, 3].map((i) => (
+          <motion.div 
+            key={i}
+            className="h-6 sm:h-7 w-14 sm:w-16 bg-gradient-to-r from-blue-100/60 to-purple-100/60 dark:from-blue-900/40 dark:to-purple-900/40 rounded-full"
+            animate={{
+              background: [
+                "linear-gradient(45deg, #dbeafe, #e0e7ff)",
+                "linear-gradient(45deg, #e0e7ff, #dbeafe)"
+              ]
+            }}
+            transition={{ 
+              duration: 1.5, 
+              repeat: Infinity, 
+              ease: "easeInOut",
+              delay: i * 0.2 
+            }}
+          />
+        ))}
       </div>
 
-      {/* Button skeleton */}
-      <div className="h-10 sm:h-12 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-2xl animate-pulse" />
+      {/* Enhanced Button skeleton */}
+      <motion.div 
+        className="h-10 sm:h-12 bg-gradient-to-r from-blue-100/60 to-purple-100/60 dark:from-blue-900/40 dark:to-purple-900/40 rounded-2xl"
+        animate={{
+          background: [
+            "linear-gradient(90deg, #dbeafe, #e0e7ff, #dbeafe)",
+            "linear-gradient(90deg, #e0e7ff, #dbeafe, #e0e7ff)"
+          ]
+        }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      />
     </div>
   </motion.div>
 );
@@ -47,8 +138,6 @@ export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingMessage, setLoadingMessage] = useState("Preparing my portfolio showcase...");
-  const [apiError, setApiError] = useState(null);
-  const [showFallback, setShowFallback] = useState(false);
 
   useEffect(() => {
     // Set multiple timeouts to show progressive loading messages
@@ -73,7 +162,6 @@ export default function Projects() {
     const timeout4 = setTimeout(() => {
       if (loading) {
         setLoadingMessage("Still loading... This might take a moment on slower connections.");
-        setShowFallback(true); // Show fallback content after 8 seconds
       }
     }, 8000);
 
@@ -84,34 +172,8 @@ export default function Projects() {
         setProjects(projectsData || []);
       })
       .catch(err => {
-        const errorMessage = err.response?.status === 404 
-          ? 'Backend server not found. Please check if the server is deployed.'
-          : err.code === 'ECONNREFUSED'
-          ? 'Cannot connect to backend server. Please check your deployment.'
-          : err.message || 'Failed to fetch projects';
-        setApiError(errorMessage);
-        setLoadingMessage("Having trouble loading projects. Please try refreshing the page.");
-        // Set sample projects for demo purposes if API fails
-        setProjects([
-          {
-            _id: 'demo-1',
-            title: 'Sample Project 1',
-            shortDescription: 'This is a sample project to demonstrate the portfolio structure.',
-            cardImageUrl: '/images/ecommerce.png',
-            techStack: ['React', 'Node.js', 'MongoDB'],
-            demoLink: '#',
-            repoLink: '#'
-          },
-          {
-            _id: 'demo-2',
-            title: 'Sample Project 2',
-            shortDescription: 'Another sample project showing the portfolio layout.',
-            cardImageUrl: '/images/ecommerce.png',
-            techStack: ['JavaScript', 'Express', 'MySQL'],
-            demoLink: '#',
-            repoLink: '#'
-          }
-        ]);
+        // Keep projects array empty and continue showing loading
+        setProjects([]);
       })
       .finally(() => {
         setLoading(false);
@@ -280,52 +342,6 @@ export default function Projects() {
             </motion.p>
           </div>
 
-          {/* Show fallback content if loading takes too long */}
-          {showFallback && loading && (
-            <motion.div
-              className="space-y-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <motion.div
-                className="text-center bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl p-6 sm:p-8 max-w-lg mx-auto shadow-2xl border border-white/20 dark:border-gray-700/20"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="text-4xl mb-4">⚡</div>
-                <h3 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 text-transparent bg-clip-text mb-2">
-                  Quick Preview Available
-                </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4">
-                  While we're loading my full portfolio, here's a quick preview of what's coming...
-                </p>
-                <div className="flex justify-center gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                  <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                  <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-                </div>
-              </motion.div>
-              
-              {/* Show skeleton cards as preview */}
-              <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: {},
-                  visible: {
-                    transition: { staggerChildren: 0.1 },
-                  },
-                }}
-              >
-                {[1, 2, 3].map((i) => (
-                  <ProjectCardSkeleton key={i} />
-                ))}
-              </motion.div>
-            </motion.div>
-          )}
 
           {/* Always show projects if we have them, regardless of loading state */}
           {projects.length > 0 && (
@@ -356,116 +372,238 @@ export default function Projects() {
             </motion.div>
           )}
 
-          {/* Show loading state only if loading and no projects */}
-          {loading && projects.length === 0 && (
+
+          {/* Enhanced Loading State */}
+          {projects.length === 0 && (
             <motion.div
-              className="space-y-8"
+              className="flex flex-col items-center justify-center min-h-[70vh] space-y-8 sm:space-y-12"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
             >
-              {/* Loading Message */}
+              {/* Enhanced Loading Card */}
               <motion.div
-                className="text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-6 sm:p-8 max-w-lg mx-auto shadow-2xl border border-white/20 dark:border-gray-700/20"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                className="relative text-center bg-white/90 dark:bg-gray-800/90 backdrop-blur-2xl rounded-3xl p-8 sm:p-12 max-w-2xl mx-auto shadow-2xl border border-white/30 dark:border-gray-700/30 overflow-hidden"
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <div className="flex items-center justify-center gap-4 mb-4">
-                  <motion.div
-                    className="w-8 h-8 border-3 border-blue-200 dark:border-blue-900 border-t-blue-500 rounded-full"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  />
-                <h3 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 text-transparent bg-clip-text">
-                  Crafting My Portfolio
-                </h3>
-                </div>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
-                  {loadingMessage}
-                </p>
+                {/* Animated background gradient */}
                 <motion.div
-                  className="mt-4 flex justify-center gap-1"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  {[0, 1, 2].map((i) => (
+                  className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl"
+                  animate={{
+                    background: [
+                      "linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1))",
+                      "linear-gradient(45deg, rgba(236, 72, 153, 0.1), rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1))",
+                      "linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1), rgba(59, 130, 246, 0.1))"
+                    ]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                />
+
+                {/* Floating particles around the card */}
+                <div className="absolute inset-0 overflow-hidden rounded-3xl">
+                  {[...Array(8)].map((_, i) => (
                     <motion.div
                       key={i}
-                      className="w-2 h-2 bg-blue-500 rounded-full"
+                      className="absolute w-1 h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
+                      style={{
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 100}%`,
+                      }}
                       animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.5, 1, 0.5],
+                        y: [0, -20, 0],
+                        opacity: [0.3, 0.8, 0.3],
+                        scale: [1, 1.5, 1],
                       }}
                       transition={{
-                        duration: 1.5,
+                        duration: 3 + Math.random() * 2,
                         repeat: Infinity,
-                        delay: i * 0.2,
+                        delay: Math.random() * 2,
+                        ease: "easeInOut",
                       }}
                     />
                   ))}
-                </motion.div>
+                </div>
+
+                <div className="relative z-10">
+                  {/* Enhanced Icon and Title */}
+                  <motion.div
+                    className="flex flex-col items-center gap-6 mb-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                  >
+                    {/* Animated Portfolio Icon */}
+                    <motion.div
+                      className="relative p-6 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl shadow-2xl"
+                      animate={{
+                        rotate: [0, 5, -5, 0],
+                        scale: [1, 1.05, 1],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      {/* Glow effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl blur-xl opacity-50"
+                        animate={{
+                          opacity: [0.3, 0.6, 0.3],
+                          scale: [1, 1.1, 1],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      />
+                      
+                      <motion.svg
+                        className="relative w-8 h-8 sm:w-10 sm:h-10 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                        />
+                      </motion.svg>
+                    </motion.div>
+
+                    <div className="text-center">
+                      <motion.h3
+                        className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 text-transparent bg-clip-text mb-3"
+                        animate={{
+                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      >
+                        Crafting My Portfolio
+                      </motion.h3>
+                      
+                      <motion.p
+                        className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-md mx-auto"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.6 }}
+                      >
+                        {loadingMessage}
+                      </motion.p>
+                    </div>
+                  </motion.div>
+
+                  {/* Enhanced Loading Animation */}
+                  <motion.div
+                    className="flex flex-col items-center gap-6"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                  >
+                    {/* Main Loading Spinner */}
+                    <div className="relative">
+                      <motion.div
+                        className="w-16 h-16 sm:w-20 sm:h-20 border-4 border-blue-200/30 dark:border-blue-900/30 rounded-full"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                      />
+                      <motion.div
+                        className="absolute inset-0 w-16 h-16 sm:w-20 sm:h-20 border-4 border-transparent border-t-blue-500 border-r-purple-500 rounded-full"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                      />
+                      <motion.div
+                        className="absolute inset-2 w-12 h-12 sm:w-16 sm:h-16 border-2 border-transparent border-t-pink-500 rounded-full"
+                        animate={{ rotate: -360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      />
+                    </div>
+
+                    {/* Animated Dots */}
+                    <motion.div
+                      className="flex justify-center gap-2"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1 }}
+                    >
+                      {[0, 1, 2].map((i) => (
+                        <motion.div
+                          key={i}
+                          className="w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                          animate={{
+                            scale: [1, 1.3, 1],
+                            opacity: [0.5, 1, 0.5],
+                            y: [0, -8, 0],
+                          }}
+                          transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            delay: i * 0.2,
+                            ease: "easeInOut",
+                          }}
+                        />
+                      ))}
+                    </motion.div>
+
+                    {/* Progress Bar */}
+                    <motion.div
+                      className="w-full max-w-xs h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.2 }}
+                    >
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full"
+                        animate={{
+                          x: ["-100%", "100%"],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    </motion.div>
+                  </motion.div>
+                </div>
               </motion.div>
 
-              {/* Skeleton Cards */}
+              {/* Enhanced Skeleton Cards */}
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+                className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 w-full max-w-7xl"
                 initial="hidden"
                 animate="visible"
                 variants={{
                   hidden: {},
                   visible: {
-                    transition: { staggerChildren: 0.1 },
+                    transition: { staggerChildren: 0.15 },
                   },
                 }}
               >
                 {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <ProjectCardSkeleton key={i} />
+                  <motion.div
+                    key={i}
+                    variants={{
+                      hidden: { opacity: 0, y: 30, scale: 0.9 },
+                      visible: { opacity: 1, y: 0, scale: 1 },
+                    }}
+                    transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+                  >
+                    <ProjectCardSkeleton />
+                  </motion.div>
                 ))}
               </motion.div>
-            </motion.div>
-          )}
-
-          {/* Show no projects message only if not loading and no projects */}
-          {!loading && projects.length === 0 && (
-            <motion.div
-              className="text-center bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl p-8 sm:p-12 max-w-md mx-auto shadow-2xl"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="text-6xl mb-4">📁</div>
-              <p className="text-gray-600 dark:text-gray-300 text-lg mb-4">
-                {apiError ? 'Unable to load projects from server.' : 'No projects found.'}
-              </p>
-              {apiError && (
-                <div className="mb-4">
-                  <p className="text-sm text-red-500 dark:text-red-400 mb-4">
-                    Error: {apiError}
-                  </p>
-                  <button
-                    onClick={() => {
-                      setLoading(true);
-                      setApiError(null);
-                      setLoadingMessage("Retrying to load my projects...");
-                      // Retry the fetch
-                      fetchProjects()
-                        .then(res => {
-                          const projectsData = Array.isArray(res.data) ? res.data : (res.data.data || res.data);
-                          setProjects(projectsData || []);
-                        })
-                        .catch(err => {
-                          setApiError(err.message || 'Failed to fetch projects');
-                        })
-                        .finally(() => setLoading(false));
-                    }}
-                    className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-                  >
-                    Retry
-                  </button>
-                </div>
-              )}
             </motion.div>
           )}
         </div>
