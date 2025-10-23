@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   useLocation,
+  Navigate,
 } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -93,6 +94,11 @@ function AnimatedRoutes() {
                 <Contact />
               </PageWrapper>
             }
+          />
+          {/* ✅ Catch-all route: Redirect any invalid URLs to home */}
+          <Route
+            path="*"
+            element={<Navigate to="/" replace />}
           />
         </Routes>
       </motion.div>
