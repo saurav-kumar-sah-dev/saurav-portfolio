@@ -43,7 +43,7 @@ export default function Resume() {
   ];
 
   const achievements = [
-    { icon: FaProjectDiagram, count: "15+", label: "Projects Completed", color: "from-blue-500 to-purple-500", description: "Full-stack applications" },
+    { icon: FaProjectDiagram, count: "10+", label: "Projects Completed", color: "from-blue-500 to-purple-500", description: "Full-stack applications" },
     { icon: FaTrophy, count: "3+", label: "Awards Won", color: "from-yellow-500 to-orange-500", description: "Hackathons & competitions" },
     { icon: FaGraduationCap, count: "5+", label: "Certifications", color: "from-green-500 to-teal-500", description: "Professional certificates" },
     { icon: FaCode, count: "75K+", label: "Lines of Code", color: "from-purple-500 to-pink-500", description: "Clean & efficient code" },
