@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
-import { FaGithub, FaLinkedin, FaTwitter, FaDownload, FaCode, FaRocket, FaHeart } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaCode, FaRocket, FaHeart } from "react-icons/fa";
 
 const techStack = [
   { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", color: "from-cyan-400 to-blue-500", level: "Expert" },
@@ -377,32 +377,35 @@ export default function Home() {
               </Link>
             </motion.div>
 
-            {/* Tertiary CTA - Download Resume */}
+            {/* Tertiary CTA - View Resume */}
             <motion.div
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
               className="group"
             >
-              <a
-                href="/Resume/Resume.pdf"
-                download
+              <Link
+                to="/resume"
                 className="relative inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 sm:py-5 overflow-hidden rounded-2xl bg-white/95 dark:bg-gray-800/95 backdrop-blur-xl text-gray-900 dark:text-white font-bold text-base sm:text-lg shadow-2xl border border-gray-200/50 dark:border-gray-700/50 transition-all duration-300"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 via-emerald-500/10 to-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 <span className="relative flex items-center gap-2">
-                  <FaDownload className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
                   Resume
                 </span>
-                <motion.div
-                  animate={{ y: [0, -2, 0] }}
+                <motion.svg 
+                  className="relative w-5 h-5 sm:w-6 sm:h-6" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                  animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 >
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                </motion.div>
-              </a>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </motion.svg>
+              </Link>
             </motion.div>
           </motion.div>
 
