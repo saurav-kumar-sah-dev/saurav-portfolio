@@ -790,38 +790,6 @@ export default function About() {
                   {" "}to strengthen my problem-solving and backend logic. I enjoy working on real-world projects, focusing on performance optimization, authentication, payments, and real-time features that enhance user experience.
                 </p>
               </motion.div>
-
-              <motion.div
-                className="flex justify-center lg:justify-start"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
-                <motion.div whileHover={{ scale: 1.05, y: -3 }} whileTap={{ scale: 0.95 }}>
-                  <Link
-                    to="/contact"
-                    className="group relative inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-300 font-bold overflow-hidden text-sm sm:text-base"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 transition-all duration-300" />
-                    <span className="relative">Get in Touch</span>
-                    <motion.svg
-                      className="w-4 h-4 sm:w-5 sm:h-5 relative"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      animate={{ x: [0, 3, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      />
-                    </motion.svg>
-                  </Link>
-                </motion.div>
-              </motion.div>
             </div>
           </div>
         </div>
@@ -1383,7 +1351,7 @@ export default function About() {
             whileTap={{ scale: 0.95 }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/20 group-hover:to-pink-500/20 transition-all duration-300" />
-            <span className="relative">Download Full Resume</span>
+            <span className="relative">Resume</span>
             <motion.svg
               className="w-5 h-5 sm:w-6 sm:h-6 relative"
               fill="none"
