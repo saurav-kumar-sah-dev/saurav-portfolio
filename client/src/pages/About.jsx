@@ -768,15 +768,26 @@ export default function About() {
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed">
-                  I am an enthusiastic and detail-oriented{" "}
+                  I'm{" "}
                   <span className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 text-transparent bg-clip-text">
-                    MERN Stack Developer
-                  </span>{" "}
-                  dedicated to building secure, scalable, and responsive web applications.
+                    Saurav Kumar Sah
+                  </span>
+                  , a{" "}
+                  <span className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 text-transparent bg-clip-text">
+                    Full-Stack Developer
+                  </span>
+                  {" "}passionate about building scalable, high-performance web applications with clean code, secure APIs, and modern UI/UX. I specialize in the{" "}
+                  <span className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 text-transparent bg-clip-text">
+                    MERN stack
+                  </span>
+                  {" "}(MongoDB, Express.js, React.js, Node.js) to create efficient and maintainable solutions.
                 </p>
                 <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-                  Passionate about clean code, modern technologies, and collaborative development. I focus on
-                  delivering exceptional digital experiences that combine innovation with reliability.
+                  I also explore{" "}
+                  <span className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 text-transparent bg-clip-text">
+                    Java and DSA
+                  </span>
+                  {" "}to strengthen my problem-solving and backend logic. I enjoy working on real-world projects, focusing on performance optimization, authentication, payments, and real-time features that enhance user experience.
                 </p>
               </motion.div>
 

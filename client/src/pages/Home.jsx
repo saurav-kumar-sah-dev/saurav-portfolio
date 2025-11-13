@@ -248,14 +248,19 @@ export default function Home() {
           >
             <div className="relative">
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed">
+                I'm{" "}
                 <span className="font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 text-transparent bg-clip-text">
-                  Full Stack Developer
+                  Saurav Kumar Sah
                 </span>
-                {" "}specializing in the{" "}
+                , a{" "}
                 <span className="font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 text-transparent bg-clip-text">
-                  MERN Stack
+                  Full-Stack Developer
                 </span>
-                , passionate about creating modern, scalable, and user-focused web applications.
+                {" "}passionate about building scalable, high-performance web applications. I specialize in the{" "}
+                <span className="font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 text-transparent bg-clip-text">
+                  MERN stack
+                </span>
+                {" "}and explore Java & DSA to create efficient, maintainable solutions with modern UI/UX.
               </p>
               
               {/* Decorative elements */}
