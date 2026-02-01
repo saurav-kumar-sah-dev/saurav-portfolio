@@ -697,10 +697,9 @@ export default function About() {
                 }}
               />
               <div className="relative">
-                <motion.img
-                  src="/Profile-Image/profile2.png"
-                  alt="Profile"
-                  className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-2xl sm:rounded-3xl object-cover shadow-xl sm:shadow-2xl border-3 sm:border-4 border-white/60 dark:border-gray-800/60"
+                <motion.div
+                  className="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl border-3 sm:border-4 border-white/60 dark:border-gray-800/60 bg-contain bg-center bg-no-repeat"
+                  style={{ backgroundImage: "url('/Profile-Image/profile2.png')" }}
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 />
