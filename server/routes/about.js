@@ -17,7 +17,8 @@ router.get('/', async (_req, res) => {
 
     const currentFocus = [
   "Building full-stack applications with the MERN stack (MongoDB, Express.js, React.js, Node.js)",
-  "Exploring Next.js (SSR) and contributing to open-source MERN projects"
+  "Exploring Next.js (SSR) and contributing to open-source MERN projects",
+  "Strengthening DSA (Data Structures & Algorithms) and Java for backend development"
 ];
 
 

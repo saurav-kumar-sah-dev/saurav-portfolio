@@ -40,6 +40,8 @@ export default function Resume() {
     { name: "JavaScript", level: 92, color: "from-yellow-500 to-orange-500", icon: "💛", experience: "4+ years" },
     { name: "Tailwind CSS", level: 88, color: "from-cyan-500 to-teal-500", icon: "🎨", experience: "2+ years" },
     { name: "Git/GitHub", level: 85, color: "from-orange-500 to-red-500", icon: "📚", experience: "3+ years" },
+    { name: "MySQL", level: 80, color: "from-blue-500 via-cyan-500 to-teal-500", icon: "🗄️", experience: "1+ years" },
+    { name: "Java", level: 78, color: "from-orange-400 via-orange-500 to-red-600", icon: "☕", experience: "1+ years" },
   ];
 
   const achievements = [

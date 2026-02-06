@@ -59,6 +59,18 @@ const techStack = [
     color: "from-purple-600 to-violet-700",
     level: "Advanced",
   },
+  {
+    name: "MySQL",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+    color: "from-blue-500 via-cyan-500 to-teal-500",
+    level: "Intermediate",
+  },
+  {
+    name: "Java",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    color: "from-orange-400 via-orange-500 to-red-600",
+    level: "Intermediate",
+  },
 ];
 
 const socialLinks = [
