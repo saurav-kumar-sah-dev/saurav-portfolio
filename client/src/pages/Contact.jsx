@@ -23,8 +23,8 @@ export default function Contact() {
     {
       icon: FaPhone,
       title: "Phone",
-      value: "+91 9876543210",
-      link: "tel:+919876543210",
+      value: "+91 8235970780",
+      link: "tel:+918235970780",
       color: "from-green-500 to-emerald-500",
       description: "Call me for urgent matters"
     }

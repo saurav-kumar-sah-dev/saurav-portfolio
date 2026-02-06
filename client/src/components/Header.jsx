@@ -161,7 +161,7 @@ export default function Header({ darkMode, setDarkMode }) {
                     className="text-xl sm:text-2xl font-black bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 text-transparent bg-clip-text drop-shadow-sm"
                     whileHover={{ scale: 1.02 }}
                   >
-                    Saurav Kumar
+                    Saurav Kumar Sah
                   </motion.div>
                   <motion.div 
                     className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 -mt-1 font-medium"
